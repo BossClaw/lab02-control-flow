@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 2: Control Flow, Loops, and Scope</title>
+
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="crt.css" />
+
+    <script defer src="script.js"></script>
+</head>
+
+<!-- <body class="crt"> -->
+
+<body>
+    <div class="bodyContent">
+        <header style="text-align: center">
+            <h1>**** CPAN113 WEB - LAB 2 ****</h1>
+            <p aria-label="System RAM info">
+                134K RAM SYSTEM 2025 BASIC BYTES FREE
+            </p>
+        </header>
+
+        <main>
+            <div>
+                <h2>If-else Condition - What is Number?</h2>
+
+                <label for="what_number_inp">Enter a Number:</label>
+                <input id="what_number_inp" name="what_number_inp" />
+
+                <button id='what_number_butt' type="button">
+                    What is Number?
+                </button>
+            </div>
+
+
+            <div>
+                <h2>Switch Statement - A Day of the Week!</h2>
+
+                <label for="dotw_inp">Enter a Number from 1 to 7:</label>
+                <input type="number" id="dotw_inp" name="dotw_inp" min="1" max="7" />
+
+                <button id='dotw_butt' type="button">
+                    Get Day of the Week!
+                </button>
+            </div>
+
+
+            <div>
+                <h2>Loops (For, While, Do...While)</h2>
+
+                <button id='loops_butt' type="button">
+                    See the Fives
+                </button>
+            </div>
+
+
+            <div>
+                <h2>Breaking & Continuing a Loop to 14!</h2>
+
+                <label for="cont_inp">Num from 1 to 13 to continue/skip on:</label>
+                <input type="number" id="cont_inp" name="cont_inp" min="1" max="13" value="3" />
+
+                <label for="break_inp">Num from 1 to 13 to break on:</label>
+                <input type="number" id="break_inp" name="break_inp" min="1" max="13" value="5" />
+
+                <button id='break_butt' type="button">
+                    Break the loop!
+                </button>
+            </div>
+
+
+            <div>
+                <h2>Minty Fresh Scoping!</h2>
+
+                <button id='scope_butt' type="button">
+                    Evaluate Scope!
+                </button>
+            </div>
+
+
+    </div>
+
+    <!-- MODAL -->
+    <div id="modal" role="dialog">
+        <div id="modalContent">
+            <p id="modal_mesg">A Modal Mesg!</p>
+            <button id="closeModal" aria-label="Close this modal">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // REG THE MODAL & BUTTON
+        const modal = document.getElementById("modal");
+        const modalMesg = document.getElementById("modal_mesg");
+
+        document.getElementById("closeModal").addEventListener("click", () => { modal.style.display = "none"; });
+
+        // REG THE BUTTONS TO CALL FUNCS
+        document.getElementById("what_number_butt").addEventListener("click", () => { do_what_number(document.getElementById("what_number_inp").value, modal, modalMesg) });
+        document.getElementById("dotw_butt").addEventListener("click", () => { do_dotw(document.getElementById("dotw_inp").value, modal, modalMesg) });
+        document.getElementById("loops_butt").addEventListener("click", () => { do_loops(modal, modalMesg) });
+        document.getElementById("break_butt").addEventListener("click", () => { do_break(document.getElementById("cont_inp").value, document.getElementById("break_inp").value, modal, modalMesg) });
+        document.getElementById("scope_butt").addEventListener("click", () => { do_scope(modal, modalMesg) });
+
+
+    </script>
+</body>
+
+</html>
