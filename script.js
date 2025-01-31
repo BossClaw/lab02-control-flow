@@ -197,10 +197,7 @@ async function do_break(cont_at, break_at, modal, modalMesg) {
 }
 
 
-
-
-
-let globalVar = "A Global Var!";
+let globalVar = "DOG!";
 
 
 async function do_scope(modal, modalMesg) {
@@ -209,19 +206,81 @@ async function do_scope(modal, modalMesg) {
     modalMesg.innerText = "Scoping variables!\n\n";
     modal.style.display = "flex";
     await w();
+    await w();
 
 
     // GLOBAL
-    modalMesg.innerText += "Global value is\n";
-    await w();
+    modalMesg.innerText += "GlobalVar is\n";
     modalMesg.innerText += "[" + globalVar + "]\n\n";
     await w();
     await w();
 
 
     // INNER
-    let localVar = "Local Var!";
+    let localVar = "CAT!";
     modalMesg.innerText += "Local Var is\n";
+    modalMesg.innerText += "[" + localVar + "]\n\n";
     await w();
-    modalMesg.innerText += "[" + localVar + "]\n";
+    await w();
+    
+    
+    // FUNCS
+    function LocalLocalFunc() {
+        try {
+            return "Local LocalVar is\n[" + localVar + "]\n\n";
+            
+        } catch (e) {
+            return "Couldn't get Local LocalVar!\nError[" + e.message + "]\n\n";
+        }
+    }
+    
+    function LocalGlobalFunc() {
+        try {
+            return "Local GlobalVar is\n[" + globalVar + "]\n\n";
+            
+        } catch (e) {
+            return "Couldn't get Local GlobalVar!\nError[" + e.message + "]\n\n";
+        }
+    }
+    
+    // LOCAL LOCAL FUNC
+    modalMesg.innerText += LocalLocalFunc();
+    await w();
+    await w();
+    
+    
+    // LOCAL GLOBAL FUNC
+    modalMesg.innerText += LocalGlobalFunc();
+    await w();
+    await w();
+    
+    
+    // GLOBAL LOCAL FUNC
+    modalMesg.innerText += GlobalLocalFunc();
+    await w();
+    await w();
+
+
+    // GLOBAL GLOBAL FUNC
+    modalMesg.innerText += GlobalGlobalFunc();
+    await w();
+    await w();
+}
+
+function GlobalLocalFunc() {
+    try {
+        return "Global LocalVar is\n[" + localVar + "]\n\n";
+
+    } catch (e) {
+        return "Couldn't get Global LocalVar!\nError[" + e.message + "]\n\n";
+    }
+}
+
+function GlobalGlobalFunc() {
+    try {
+        return "Global GlobalVar is\n[" + globalVar + "]\n\n";
+
+    } catch (e) {
+        return "Couldn't get Global GlobalVar!\nError[" + e.message + "]\n\n";
+    }
 }
